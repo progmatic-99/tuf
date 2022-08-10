@@ -16,16 +16,14 @@ typedef vector<llu> vlu;
 llu power(llu base,llu exp){llu res=1;while(exp){if(exp&1)res=(res*base)%MOD;base=(base*base)%MOD;exp>>=1;}return res;}
 
 void solve() {
-  int row, col;
-  cin>>row>>col;
-  vector<vector<int>> mat(row, vector<int> (col));
+  vi nums;
+  int sum = 0, maxSum = INT_MIN;
 
-  for(int i=1; i<row; ++i) {
-    for(int j=0; j<col; ++j) {
-      cin>>mat[i][j];
-    }
+  for(int i: nums) {
+    sum += i;
+    maxSum = max(maxSum, sum);
+    sum = max(sum, 0);
   }
-
 }
 
 int main(void)

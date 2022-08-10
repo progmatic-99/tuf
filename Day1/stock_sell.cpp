@@ -16,16 +16,6 @@ typedef vector<llu> vlu;
 llu power(llu base,llu exp){llu res=1;while(exp){if(exp&1)res=(res*base)%MOD;base=(base*base)%MOD;exp>>=1;}return res;}
 
 void solve() {
-  int row, col;
-  cin>>row>>col;
-  vector<vector<int>> mat(row, vector<int> (col));
-
-  for(int i=0; i<row; ++i) {
-    for(int j=0; j<col; ++j) {
-      cin>>mat[i][j];
-    }
-  }
-
 }
 
 int main(void)
@@ -36,10 +26,20 @@ int main(void)
   freopen("output.txt", "w", stdout);
 #endif
 
-  int t;
-  cin >> t;
-  while(t--) {
-    solve();
+//  int t;
+//  cin >> t;
+//  while(t--) {
+//    solve();
+//  }
+
+  int minPrice = INT_MAX, maxProfit = 0;
+  vi prices;
+  for(int i: prices) {
+    minPrice = min(minPrice, i);
+    maxProfit = max(maxProfit, i-maxProfit);
   }
+
+  cout<<maxProfit<<endl;
+
   return 0;
 }

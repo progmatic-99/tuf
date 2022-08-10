@@ -1,45 +1,34 @@
 #include <bits/stdc++.h>
-#define pb push_back
-#define ll long long
-#define llu unsigned long long
-#define fo(a,b) for(int i=(a); i<(b); ++i)
-#define endl "\n"
-bool isPowofTwo(int x) { return x && !(x & (x-1)); }
-const llu MOD = 1e9+7;
 
 using namespace std;
 
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef vector<llu> vlu;
+int main() {
+  vector<vector<int>> matrix;
+  int rows = matrix.size();
+  int cols = matrix[0].size();
+  int zerothCol = 1;
 
-llu power(llu base,llu exp){llu res=1;while(exp){if(exp&1)res=(res*base)%MOD;base=(base*base)%MOD;exp>>=1;}return res;}
+  for(int i=0; i<rows; ++i) {
+    if(matrix[i][0] == 0)  zerothCol = 0;
 
-void solve() {
-  int row, col;
-  cin>>row>>col;
-  vector<vector<int>> mat(row, vector<int> (col));
-
-  for(int i=1; i<row; ++i) {
-    for(int j=0; j<col; ++j) {
-      cin>>mat[i][j];
+    for(int j=0; j<cols; ++j) {
+      if(matrix[i][j] == 0) {
+        matrix[i][0] = 0;
+        matrix[0][j] = 0;
+      }
     }
   }
 
-}
+  for(int i=rows-1; i>=0; --i) {
+    for(int j=cols-1; j>=1; --j) {
+      if(matrix[i][0] == 0 || matrix[j][0] == 0) {
+        matrix[i][j] = 0;
+      }
 
-int main(void)
-{
-  ios::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-#ifndef ONLINE_JUDGE
-  freopen("input.txt", "r", stdin);
-  freopen("output.txt", "w", stdout);
-#endif
-
-  int t;
-  cin >> t;
-  while(t--) {
-    solve();
+      if(zerothCol == 0) {
+        matrix[i][j] = 0;
+      }
+    }
   }
   return 0;
 }
